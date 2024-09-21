@@ -1,0 +1,6 @@
+docker pull kindest/node:v1.28.13
+kind create cluster --name argocd --config src/kind-config.yaml
+src/setup-argocd.sh
+k port-forward svc/argocd-server -n argocd 8080:443
+username: admin
+password: k get secrets argocd-initial-admin-secret -n argocd -ojsonpath={.data.password} | base64 -d
