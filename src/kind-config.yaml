@@ -3,6 +3,13 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
   image: kindest/node:v1.28.13
+  extraPortMappings: # istio ingress gateway
+  - containerPort: 30000
+    hostPort: 80
+  - containerPort: 31000
+    hostPort: 443
+  - containerPort: 32000
+    hostPort: 15021
 - role: worker
   image: kindest/node:v1.28.13
 - role: worker

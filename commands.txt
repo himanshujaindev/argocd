@@ -1,8 +1,26 @@
 docker pull kindest/node:v1.28.13
 kind create cluster --name argocd --config src/kind-config.yaml
+k apply -f src/init.yaml
+
+curl -L https://istio.io/downloadIstio | sh -
+cp src/istio-custom-profile.yaml istio-1.23.2/manifests/profiles/
+istio-1.23.2/bin/istioctl install --set profile=istio-custom-profile -d istio-1.23.2/manifests/ -y
+k patch services istio-ingressgateway -n istio-system --patch-file src/gateway-patch.yaml
+kubectl apply -f istio-1.23.2/samples/addons/grafana.yaml
+kubectl apply -f src/prometheus.yaml
+kubectl label namespace pf istio-injection=enabled
+kubectl apply -f istio-1.23.2/samples/bookinfo/platform/kube/bookinfo.yaml -n pf
+kubectl apply -f istio-1.23.2/samples/bookinfo/networking/bookinfo-gateway.yaml -n pf
+http://localhost/productpage
+
+
 src/setup-argocd.sh
 k port-forward svc/argocd-server -n argocd 8080:443
 username: admin
 password: k get secrets argocd-initial-admin-secret -n argocd -ojsonpath={.data.password} | base64 -d
 k apply -f src/application.yaml
+k apply -f src/applicationset.yaml
+
+
+
 kind delete cluster --name argocd

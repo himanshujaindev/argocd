@@ -4,17 +4,19 @@ metadata:
   name: multiple-apps
   namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
-  - git:
-      repoURL: https://github.com/himanshujaindev/argocd.git
-      revision: main
-      directories:
-      - path: src/app-config/*
+    - git:
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        revision: main
+        directories:
+        - path: src/app-config/*
   template:
     metadata:
       name: '{{.path.basename}}'
     spec:
-      project: "my-project"
+      project: default
       source:
         repoURL: https://github.com/himanshujaindev/argocd.git
         targetRevision: main
@@ -25,3 +27,6 @@ spec:
       syncPolicy:
         syncOptions:
         - CreateNamespace=true
+        automated:
+          prune: true
+          selfHeal: true
