@@ -27,7 +27,7 @@ spec:
         automated:
           prune: true
           selfHeal: false
-      project: platform
+      project: default
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{`{{.namespace}}`}}'
