@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: wxcc-platform-dcdemo
+spec:
+  goTemplate: true
+  goTemplateOptions: [ "missingkey=error" ]
+  generators:
+    - list:
+        elements:
+          - service: 'example-chart'
+            namespace: 'pf'
+            valueFiles:
+            - 'chart/custom/dev.yaml'
+            syncWave: '0'
+            repo: 'https://github.com/himanshujaindev/example-chart.git'
+            targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+  template:
+    metadata:
+      name: 'dcdemo-{{`{{.service}}`}}'
+    spec:
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
+          - Validate=true
+          - ApplyOutOfSyncOnly=true
+        automated:
+          prune: true
+          selfHeal: false
+      project: platform
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: '{{`{{.namespace}}`}}'
+  templatePatch: |
+    {{`{{ if ne .syncWave ""}}`}}
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
+    {{`{{ end -}}`}}
+    spec:
+      sources:
+        - repoURL: '{{`{{.repo}}`}}'
+          targetRevision: '{{ `{{.targetRevision}}` }}'
+          path: 'chart/'
+          helm:
+            releaseName: '{{`{{.service}}`}}'
+            valueFiles:
+            {{`{{ range .valueFiles -}}`}}
+            - '$values/{{`{{.}}`}}'
+            {{`{{ end }}`}}
