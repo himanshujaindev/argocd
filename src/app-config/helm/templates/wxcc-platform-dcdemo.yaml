@@ -11,7 +11,7 @@ spec:
           - service: 'example-chart'
             namespace: 'pf'
             valueFiles:
-            - 'chart/custom/dev.yaml'
+            - 'custom/dev.yaml'
             syncWave: '0'
             repo: 'https://github.com/himanshujaindev/example-chart.git'
             targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
