@@ -39,7 +39,8 @@ spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
           targetRevision: '{{ `{{.targetRevision}}` }}'
+          path: 'chart'
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
-              - chart/custom/dev.yaml
+              - custom/dev.yaml
