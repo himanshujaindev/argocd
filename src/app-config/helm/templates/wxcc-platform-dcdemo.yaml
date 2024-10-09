@@ -10,7 +10,7 @@ spec:
         elements:
           - service: 'example-chart'
             namespace: 'pf'
-            # syncWave: '0'
+            syncWave: '0'
             repo: 'https://github.com/himanshujaindev/example-chart.git'
             targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
   template:
