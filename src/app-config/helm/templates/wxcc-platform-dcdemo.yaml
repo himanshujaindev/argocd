@@ -41,7 +41,7 @@ spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
           targetRevision: '{{ `{{.targetRevision}}` }}'
-          chart: 'chart/'
+          path: 'chart/'
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
