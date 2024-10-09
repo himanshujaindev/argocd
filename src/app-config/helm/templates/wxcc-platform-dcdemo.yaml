@@ -41,7 +41,6 @@ spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
           targetRevision: '{{ `{{.targetRevision}}` }}'
-          path: '/'
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
