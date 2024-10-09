@@ -12,7 +12,7 @@ spec:
           namespace: 'pf'
           syncWave: "0"
           repo: 'https://github.com/himanshujaindev/example-chart.git'
-          targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+          targetRevision: 'main'
           path: 'chart/'
           valueFiles:
             - 'custom/dev.yaml'
