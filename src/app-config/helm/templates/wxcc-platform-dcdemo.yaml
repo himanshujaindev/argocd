@@ -31,9 +31,9 @@ spec:
         namespace: '{{`{{.namespace}}`}}'
   templatePatch: |
     {{- if .syncWave }}
-    metadata:
-      annotations:
-        argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
+      metadata:
+        annotations:
+          argocd.argoproj.io/sync-wave: '{{ .syncWave }}'
     {{- end }}
     spec:
       sources:
