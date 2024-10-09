@@ -10,8 +10,6 @@ spec:
         elements:
           - service: 'example-chart'
             namespace: 'pf'
-            valueFiles:
-            - 'custom/dev.yaml'
             syncWave: '0'
             repo: 'https://github.com/himanshujaindev/example-chart.git'
             targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
@@ -45,6 +43,4 @@ spec:
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
-            {{`{{ range .valueFiles -}}`}}
-            - '{{`{{.}}`}}'
-            {{`{{ end }}`}}
+            - 'custom/dev.yaml'
