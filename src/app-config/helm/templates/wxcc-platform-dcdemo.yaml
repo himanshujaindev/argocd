@@ -8,7 +8,7 @@ spec:
   generators:
   - list:
       elements:
-        - name: 'example-chart'
+        - name: examplechart
           namespace: 'pf'
           syncWave: "0"
           repo: 'https://github.com/himanshujaindev/example-chart.git'
