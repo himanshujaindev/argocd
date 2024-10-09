@@ -18,7 +18,7 @@ spec:
             - chart/custom/dev.yaml
   template:
     metadata:
-      name: 'dcdemo-{{.service}}'
+      name: '{{.service}}'
     spec:
       syncPolicy:
         syncOptions:
