@@ -10,7 +10,7 @@ spec:
         elements:
           - service: 'example-chart'
             namespace: 'pf'
-            # syncWave: '0'
+            syncWave: ''
             repo: 'https://github.com/himanshujaindev/example-chart.git'
             targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
   template:
@@ -30,11 +30,11 @@ spec:
         server: 'https://kubernetes.default.svc'
         namespace: '{{`{{.namespace}}`}}'
   templatePatch: |
-    {{`{{ if ne .syncWave ""}}`}}
+    {{- if ne .syncWave ""}}
     metadata:
       annotations:
         argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
-    {{`{{ end -}}`}}
+    {{- end }}
     spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
