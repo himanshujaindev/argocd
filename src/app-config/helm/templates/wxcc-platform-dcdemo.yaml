@@ -8,7 +8,7 @@ spec:
   generators:
   - list:
       elements:
-        - service: 'example-chart'
+        - name: 'example-chart'
           namespace: 'pf'
           syncWave: "0"
           repo: 'https://github.com/himanshujaindev/example-chart.git'
@@ -18,7 +18,7 @@ spec:
             - chart/custom/dev.yaml
   template:
     metadata:
-      name: '{{.service}}'
+      name: '{{.name}}'
     spec:
       syncPolicy:
         syncOptions:
