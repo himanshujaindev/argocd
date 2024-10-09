@@ -32,7 +32,16 @@ spec:
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{.namespace}}'
-  # templatePatch: |
+  templatePatch: |
+    {{- if .helm }}
+      spec:
+        source:
+          helm:
+            valueFiles:
+            {{- range $valueFile := .helm.valueFiles }}
+              - {{ $valueFile }}
+            {{- end }}
+    {{- end }}
   #   {{`{{ if ne .syncWave ""}}`}}
   #   metadata:
   #     annotations:
