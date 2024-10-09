@@ -30,11 +30,11 @@ spec:
         server: 'https://kubernetes.default.svc'
         namespace: '{{`{{.namespace}}`}}'
   templatePatch: |
-    {{- if .syncWave }}
-      metadata:
-        annotations:
-          argocd.argoproj.io/sync-wave: '{{ .syncWave }}'
-    {{- end }}
+    {{`{{ if ne .syncWave ""}}`}}
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
+    {{`{{ end -}}`}}
     spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
