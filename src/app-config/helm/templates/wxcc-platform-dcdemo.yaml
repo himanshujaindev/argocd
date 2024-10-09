@@ -18,7 +18,7 @@ spec:
             - chart/custom/dev.yaml
   template:
     metadata:
-      name: '{{.name}}'
+      name: '{{`{{.name}}`}}'
     spec:
       syncPolicy:
         syncOptions:
