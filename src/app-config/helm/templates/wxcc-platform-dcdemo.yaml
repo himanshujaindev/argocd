@@ -43,4 +43,4 @@ spec:
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
-              - custom/dev.yaml
+            - custom/dev.yaml
