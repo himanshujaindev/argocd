@@ -13,6 +13,7 @@ spec:
           syncWave: "0"
           repo: 'https://github.com/himanshujaindev/example-chart.git'
           targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+          path: 'chart/'
           valueFiles:
             - 'custom/dev.yaml'
   template:
@@ -41,7 +42,7 @@ spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
           targetRevision: '{{ `{{.targetRevision}}` }}'
-          path: 'chart/'
+          path: '{{`{{.path}}`}}'
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
