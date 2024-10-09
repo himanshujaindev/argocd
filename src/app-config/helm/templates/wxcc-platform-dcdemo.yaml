@@ -14,7 +14,7 @@ spec:
           repo: 'https://github.com/himanshujaindev/example-chart.git'
           targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
           valueFiles:
-            - 'custom/dev.yaml'
+            - 'chart/custom/dev.yaml'
   template:
     metadata:
       name: '{{`{{.service}}`}}'
@@ -41,7 +41,7 @@ spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
           targetRevision: '{{ `{{.targetRevision}}` }}'
-          path: 'chart/'
+          path: '/'
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
