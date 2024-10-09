@@ -12,7 +12,7 @@ spec:
             namespace: 'pf'
             syncWave: '0'
             repo: 'https://github.com/himanshujaindev/example-chart.git'
-            targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+            # targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
   template:
     metadata:
       name: 'dcdemo-{{`{{.service}}`}}'
@@ -38,7 +38,9 @@ spec:
     spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
+          {{`{{ if ne .targetRevision ""}}`}}
           targetRevision: '{{ `{{.targetRevision}}` }}'
+          {{`{{ end -}}`}}
           path: 'chart/'
           helm:
             releaseName: '{{`{{.service}}`}}'
