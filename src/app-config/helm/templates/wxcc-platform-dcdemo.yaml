@@ -38,9 +38,7 @@ spec:
     spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
-          {{`{{ if ne .targetRevision ""}}`}}
           targetRevision: '{{ `{{.targetRevision}}` }}'
-          {{`{{ end -}}`}}
           path: 'chart/'
           helm:
             releaseName: '{{`{{.service}}`}}'
