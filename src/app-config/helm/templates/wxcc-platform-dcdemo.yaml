@@ -23,7 +23,7 @@ spec:
           - Validate=true
           - ApplyOutOfSyncOnly=true
         automated:
-          prune: true
+          prune: false
           selfHeal: false
       project: default
       destination:
