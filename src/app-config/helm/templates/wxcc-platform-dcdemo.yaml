@@ -6,16 +6,19 @@ spec:
   goTemplate: true
   goTemplateOptions: [ "missingkey=error" ]
   generators:
-    - list:
-        elements:
-          - service: 'example-chart'
-            namespace: 'pf'
-            syncWave: "0"
-            repo: 'https://github.com/himanshujaindev/example-chart.git'
-            targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+  - list:
+      elements:
+        - service: 'example-chart'
+          namespace: 'pf'
+          syncWave: "0"
+          repo: 'https://github.com/himanshujaindev/example-chart.git'
+          targetRevision: {{ .Values.dcdemo.examplechart.targetRevision }}
+          helm:
+            valueFiles:
+            - chart/custom/dev.yaml
   template:
     metadata:
-      name: 'dcdemo-{{`{{.service}}`}}'
+      name: 'dcdemo-{{.service}}'
     spec:
       syncPolicy:
         syncOptions:
@@ -28,19 +31,19 @@ spec:
       project: default
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: '{{`{{.namespace}}`}}'
-  templatePatch: |
-    {{`{{ if ne .syncWave ""}}`}}
-    metadata:
-      annotations:
-        argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
-    {{`{{ end -}}`}}
-    spec:
-      sources:
-        - repoURL: '{{`{{.repo}}`}}'
-          targetRevision: '{{ `{{.targetRevision}}` }}'
-          path: 'chart/'
-          helm:
-            releaseName: '{{`{{.service}}`}}'
-            valueFiles:
-            - custom/dev.yaml
+        namespace: '{{.namespace}}'
+  # templatePatch: |
+  #   {{`{{ if ne .syncWave ""}}`}}
+  #   metadata:
+  #     annotations:
+  #       argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
+  #   {{`{{ end -}}`}}
+  #   spec:
+  #     sources:
+  #       - repoURL: '{{`{{.repo}}`}}'
+  #         targetRevision: '{{ `{{.targetRevision}}` }}'
+  #         path: 'chart/'
+  #         helm:
+  #           releaseName: '{{`{{.service}}`}}'
+  #           valueFiles:
+  #           - custom/dev.yaml
