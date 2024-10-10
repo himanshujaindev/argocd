@@ -43,6 +43,8 @@ spec:
       annotations:
         argocd.argoproj.io/sync-wave: '{{`{{.syncWave}}`}}'
     {{`{{ end -}}`}}
+    labels:
+      test: app
     spec:
       sources:
         - repoURL: '{{`{{.repo}}`}}'
