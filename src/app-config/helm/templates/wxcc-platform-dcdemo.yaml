@@ -24,6 +24,9 @@ spec:
   template:
     metadata:
       name: '{{`{{.service}}`}}'
+      labels: 
+        foo: bar
+        environment: 'dev'
     spec:
       syncPolicy:
         syncOptions:
