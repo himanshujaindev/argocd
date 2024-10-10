@@ -13,7 +13,7 @@ spec:
           syncWave: "0"
           repo: 'https://github.com/himanshujaindev/example-chart.git'
           targetRevision: 'main'
-          path: 'app'
+          path: 'chart'
           valueFiles:
             - 'custom/dev.yaml'
   template:
