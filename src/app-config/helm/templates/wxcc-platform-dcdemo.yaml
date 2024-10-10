@@ -14,8 +14,6 @@ spec:
           repo: 'https://github.com/himanshujaindev/example-chart.git'
           targetRevision: 'main'
           path: 'chart'
-          valueFiles:
-            - 'custom/dev.yaml'
   template:
     metadata:
       name: '{{`{{.service}}`}}'
@@ -46,6 +44,4 @@ spec:
           helm:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
-            {{`{{ range .valueFiles -}}`}}
-            - '{{`{{.}}`}}'
-            {{`{{ end }}`}}
+            - 'custom/dev.yaml'
