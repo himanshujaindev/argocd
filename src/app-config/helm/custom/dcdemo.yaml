@@ -3,7 +3,7 @@ dcdemo:
     namespace: 'pf'
     syncWave: "0"
     repo: 'https://github.com/himanshujaindev/example-chart.git'
-    targetRevision: 'v0'
+    targetRevision: 'v5'
     path: 'chart'
     valueFiles:
     - 'custom/dev.yaml'
