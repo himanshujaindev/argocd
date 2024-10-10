@@ -24,8 +24,6 @@ spec:
   template:
     metadata:
       name: '{{`{{.service}}`}}'
-    labels:
-      test: app
     spec:
       syncPolicy:
         syncOptions:
