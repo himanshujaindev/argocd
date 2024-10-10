@@ -8,14 +8,15 @@ spec:
   generators:
   - list:
       elements:
-        - service: example-chart
-          namespace: 'pf'
-          syncWave: "0"
-          repo: 'https://github.com/himanshujaindev/example-chart.git'
-          targetRevision: 'main'
-          path: 'chart'
+      {{- range .Values.devdatacenter }}
+        - service: {{ .service }}
+          namespace: {{ .namespace }}
           valueFiles:
-            - 'custom/dev.yaml'
+            {{ toYaml .valueFiles | nindent 12 }}
+          syncWave: {{ .syncWave }}
+          repo: {{ .repo }}
+          targetRevision: {{ .targetRevision }}
+      {{- end }}
   template:
     metadata:
       name: '{{`{{.service}}`}}'

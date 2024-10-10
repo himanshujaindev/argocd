@@ -7,3 +7,5 @@ devdatacenter:
     repo: 'https://github.com/himanshujaindev/example-chart.git'
     targetRevision: 'main'
     path: 'chart'
+    valueFiles:
+      - 'custom/dev.yaml'

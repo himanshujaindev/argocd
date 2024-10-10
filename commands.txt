@@ -26,3 +26,5 @@ k apply -f src/applicationset.yaml
 kind delete cluster --name argocd
 
 
+cd src/app-config/helm
+helm template .
