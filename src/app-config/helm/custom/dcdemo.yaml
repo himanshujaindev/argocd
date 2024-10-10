@@ -1,0 +1,9 @@
+name: ''
+cluster_url: ''
+devdatacenter:
+  - service: example-chart
+    namespace: 'pf'
+    syncWave: "0"
+    repo: 'https://github.com/himanshujaindev/example-chart.git'
+    targetRevision: 'main'
+    path: 'chart'

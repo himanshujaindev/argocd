@@ -24,3 +24,5 @@ k apply -f src/applicationset.yaml
 
 
 kind delete cluster --name argocd
+
+
