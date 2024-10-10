@@ -14,7 +14,8 @@ spec:
           repo: 'https://github.com/himanshujaindev/example-chart.git'
           targetRevision: 'main'
           path: 'chart'
-          valueFiles: 'custom/dev.yaml'
+          valueFiles:
+            - 'custom/dev.yaml'
   template:
     metadata:
       name: '{{`{{.service}}`}}'
