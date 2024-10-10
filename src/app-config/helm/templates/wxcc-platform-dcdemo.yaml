@@ -8,14 +8,17 @@ spec:
   generators:
   - list:
       elements:
-      {{- range .Values.devdatacenter }}
-        - service: {{ .service }}
-          namespace: {{ .namespace }}
+      {{- $dcdemoVar := .Files.Get "custom/dcdemo.yaml" | fromYaml }}
+      {{- range $dcdemoVar.dcdemo }}
+        - service: "{{ .service }}"
+          namespace: "{{ .namespace }}"
           valueFiles:
-            {{ toYaml .valueFiles | nindent 12 }}
-          syncWave: {{ .syncWave }}
-          repo: {{ .repo }}
-          targetRevision: {{ .targetRevision }}
+          {{- range .valueFiles }}
+          - {{ . | quote }}
+          {{- end }}
+          syncWave: "{{ .syncWave }}"
+          repo: "{{ .repo }}"
+          targetRevision: "{{ .targetRevision }}"
       {{- end }}
   template:
     metadata:
