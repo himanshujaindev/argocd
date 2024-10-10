@@ -34,6 +34,9 @@ spec:
           prune: true
           selfHeal: false
       project: default
+      labels:
+        app.my.org/name: org-name
+        app.my.org/type: org-type
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: '{{`{{.namespace}}`}}'
