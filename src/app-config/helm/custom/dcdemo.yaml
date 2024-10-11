@@ -1,6 +1,6 @@
 dcdemo:
   name: 'himajai2-32-eks'
-  cluster_url: 'https://E3BDE4F04008F83ECCDE3EA318FB6583.gr7.us-west-2.eks.amazonaws.com'
+  cluster_url: 'https://kubernetes.default.svc'
   apps:
     example-chart:
       namespace: 'pf'
