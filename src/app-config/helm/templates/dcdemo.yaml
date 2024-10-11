@@ -60,6 +60,3 @@ spec:
             {{`{{ range .valueFiles -}}`}}
             - '{{`{{.}}`}}'
             {{`{{ end }}`}}
-        - repoURL: https://github.com/himanshujaindev/argocd.git
-          targetRevision: 'main'
-          ref: values
