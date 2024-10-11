@@ -1,4 +1,4 @@
 dcdemo:
   apps:
     example-chart:
-      targetRevision: 'v0'
+      targetRevision: 'v5'
