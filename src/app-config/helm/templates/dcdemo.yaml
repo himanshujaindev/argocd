@@ -58,7 +58,7 @@ spec:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
             {{`{{ range .valueFiles -}}`}}
-            - '$values/{{`{{.}}`}}'
+            - '{{`{{.}}`}}'
             {{`{{ end }}`}}
         - repoURL: https://github.com/himanshujaindev/argocd.git
           targetRevision: 'main'
