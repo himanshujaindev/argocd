@@ -1,0 +1,4 @@
+dcdemo:
+  apps:
+    example-chart:
+      targetRevision: 'v5'

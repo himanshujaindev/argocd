@@ -1,9 +1,11 @@
 dcdemo:
-- service: example-chart
-  namespace: 'pf'
-  syncWave: "0"
-  repo: 'https://github.com/himanshujaindev/example-chart.git'
-  targetRevision: 'v5'
-  path: 'chart'
-  valueFiles:
-  - 'custom/dev.yaml'
+  name: 'himajai2-32-eks'
+  cluster_url: 'https://E3BDE4F04008F83ECCDE3EA318FB6583.gr7.us-west-2.eks.amazonaws.com'
+  apps:
+    example-chart:
+      namespace: 'pf'
+      valueFiles:
+        - 'custom/dev.yaml'
+      syncWave: "0"
+      path: "chart"
+      repo: 'https://github.com/himanshujaindev/example-chart.git'

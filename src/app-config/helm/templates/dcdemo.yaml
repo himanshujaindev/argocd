@@ -1,29 +1,33 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
+{{- $parameters := .Files.Get "custom/dcdemo.yaml" | fromYaml }}
+{{- $versions := .Files.Get "versions/dcdemo.yaml" | fromYaml }}
+{{- $name := $parameters.dcdemo.name }}
+{{- $cluster_url := $parameters.dcdemo.cluster_url }}
+
 metadata:
-  name: wxcc-platform-dcdemo
+  name: {{ $name }}
 spec:
   goTemplate: true
   goTemplateOptions: [ "missingkey=error" ]
   generators:
-  - list:
-      elements:
-      {{- $dcdemoVar := .Files.Get "custom/dcdemo.yaml" | fromYaml }}
-      {{- range $dcdemoVar.dcdemo }}
-        - service: "{{ .service }}"
-          namespace: "{{ .namespace }}"
-          valueFiles:
-          {{- range .valueFiles }}
-          - {{ . | quote }}
+    - list:
+        elements:
+      {{- range $app, $value := (merge $parameters.dcdemo.apps $versions.dcdemo.apps) }}
+          - service: "{{ $app }}"
+            namespace: "{{ $value.namespace }}"
+            syncWave: "{{ $value.syncWave }}"
+            repo: "{{ $value.repo }}"
+            path: "{{ $value.path }}"
+            valueFiles:
+          {{- range $value.valueFiles }}
+              - {{ . | quote }}
           {{- end }}
-          syncWave: "{{ .syncWave }}"
-          repo: "{{ .repo }}"
-          path: "{{ .path }}"
-          targetRevision: "{{ .targetRevision }}"
+            targetRevision: {{ $value.targetRevision }}
       {{- end }}
   template:
     metadata:
-      name: '{{`{{.service}}`}}'
+      name: '{{ $name }}-{{`{{.service}}`}}'
       labels:
         environment: 'dev'
     spec:
@@ -37,7 +41,7 @@ spec:
           selfHeal: false
       project: default
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: "{{ $cluster_url }}"
         namespace: '{{`{{.namespace}}`}}'
   templatePatch: |
     {{`{{ if ne .syncWave ""}}`}}
@@ -54,5 +58,8 @@ spec:
             releaseName: '{{`{{.service}}`}}'
             valueFiles:
             {{`{{ range .valueFiles -}}`}}
-            - '{{`{{.}}`}}'
+            - '$values/{{`{{.}}`}}'
             {{`{{ end }}`}}
+        - repoURL: https://github.com/himanshujaindev/argocd.git
+          targetRevision: 'main'
+          ref: values
