@@ -1,0 +1,40 @@
+kubectl create namespace argocd
+https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#istio
+cd MY_FILES/argocd/
+curl -kLs -o install.yaml https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl apply -k ./ -n argocd --wait=true
+k apply -f virtualservice.yaml
+
+username: admin
+password: k get secrets argocd-initial-admin-secret -n argocd -ojsonpath={.data.password} | base64 -d
+
+
+k apply -f application.yaml
+
+
+
+kubens argocd
+argocd login --core
+argocd account list
+argocd app list
+argocd app get argocd/himajai2-32-eks-example-chart -oyaml
+-> argocd appset get argocd/himajai2-32-eks -oyaml
+
+Available Commands:
+  account     Manage account settings
+  admin       Contains a set of commands useful for Argo CD administrators and requires direct Kubernetes access
+  app         Manage applications
+  appset      Manage ApplicationSets
+  cert        Manage repository certificates and SSH known hosts entries
+  cluster     Manage cluster credentials
+  completion  output shell completion code for the specified shell (bash, zsh or fish)
+  context     Switch between contexts
+  gpg         Manage GPG keys used for signature verification
+  help        Help about any command
+  login       Log in to Argo CD
+  logout      Log out from Argo CD
+  proj        Manage projects
+  relogin     Refresh an expired authenticate token
+  repo        Manage repository connection parameters
+  repocreds   Manage repository connection parameters
+  version     Print version information
