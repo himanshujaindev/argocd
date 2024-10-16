@@ -60,3 +60,8 @@ spec:
             {{`{{ range .valueFiles -}}`}}
             - '{{`{{.}}`}}'
             {{`{{ end }}`}}
+            parameters:
+            {{`{{ range .valueOverride -}}`}}
+            - name: '{{`{{.name}}`}}'
+              value: '{{`{{.value}}`}}'
+            {{`{{ end }}`}}
