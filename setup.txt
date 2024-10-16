@@ -38,3 +38,6 @@ Available Commands:
   repo        Manage repository connection parameters
   repocreds   Manage repository connection parameters
   version     Print version information
+
+
+https://argo-cd.readthedocs.io/en/latest/user-guide/helm/#helm-parameters
