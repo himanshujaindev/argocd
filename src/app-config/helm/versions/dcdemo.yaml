@@ -4,4 +4,4 @@ dcdemo:
       targetRevision: 'main'
       valueOverride:
         - name: 'image.tag'
-          value: '0aaae382367be77db47b7ba1046d099948d9aef5'
+          value: 'latest'
