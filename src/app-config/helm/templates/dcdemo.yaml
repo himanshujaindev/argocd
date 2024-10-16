@@ -24,6 +24,11 @@ spec:
               - {{ . | quote }}
           {{- end }}
             targetRevision: {{ $value.targetRevision }}
+            valueOverride:
+          {{- range $value.valueOverride }}
+            - name: '{{ .name }}'
+              value: '{{ .value }}'
+          {{- end }}
       {{- end }}
   template:
     metadata:
