@@ -1,0 +1,44 @@
+❯ k get svc argo-cd-argocd-server -oyaml
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"server","app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-server","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","helm.sh/chart":"argo-cd-7.6.12"},"name":"argo-cd-argocd-server","namespace":"argocd"},"spec":{"ports":[{"name":"http","port":80,"protocol":"TCP","targetPort":8080},{"name":"https","port":443,"protocol":"TCP","targetPort":8080}],"selector":{"app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/name":"argocd-server"},"sessionAffinity":"None","type":"ClusterIP"}}
+  creationTimestamp: "2024-10-30T12:45:19Z"
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-server
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    helm.sh/chart: argo-cd-7.6.12
+  name: argo-cd-argocd-server
+  namespace: argocd
+  resourceVersion: "2773"
+  uid: 17d233d7-47f3-4226-87a6-65c3ac4c75c5
+spec:
+  clusterIP: 10.96.181.6
+  clusterIPs:
+  - 10.96.181.6
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/name: argocd-server
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

@@ -18,6 +18,8 @@ spec:
       parameters:
       - name: namespace
         value: argocd
+      - name: fullnameOverride
+        value: argo-cd-argocd
 
   destination:
     server: https://kubernetes.default.svc
