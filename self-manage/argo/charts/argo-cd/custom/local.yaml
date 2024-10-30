@@ -1,13 +1,3 @@
-configs:
-  cm:
-    globalProjects: |-
-      - labelSelector:
-          matchExpressions:
-            - key: argocd.argoproj.io/project-inherit
-              operator: In
-              values:
-                - global
-        projectName: global
 redis-ha:
   enabled: false
 applicationSet:
