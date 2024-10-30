@@ -66,7 +66,7 @@ Selector labels
 {{- if .name -}}
 app.kubernetes.io/name: {{ include "argo-cd.name" .context }}-{{ .name }}
 {{ end -}}
-app.kubernetes.io/instance: {{ .context.Release.Name }}
+app.kubernetes.io/instance: "argo-cd"
 {{- if .component }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}
