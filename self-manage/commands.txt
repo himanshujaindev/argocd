@@ -1,0 +1,11 @@
+kind create cluster --name argocd --config kind.yml
+
+helm3 repo add dandydeveloper https://dandydeveloper.github.io/charts/
+helm3 repo update
+helm3 dependency build argo/charts/argo-cd
+helm3 template argo/charts/argo-cd --name-template argo-cd --namespace argocd -f argo/charts/argo-cd/custom/local.yaml | kubectl apply -f -
+
+
+
+
+kind delete cluster --name argocd

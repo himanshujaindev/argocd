@@ -1,0 +1,44 @@
+configs:
+  cm:
+    globalProjects: |-
+      - labelSelector:
+          matchExpressions:
+            - key: argocd.argoproj.io/project-inherit
+              operator: In
+              values:
+                - global
+        projectName: global
+redis-ha:
+  enabled: false
+applicationSet:
+  replicas: 1
+repoServer:
+  replicas: 1
+server:
+  additionalApplications: 
+    - name: argocd
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        helm:
+          version: v3
+          valueFiles:
+          - values.yaml
+          - custom/local.yaml
+        path: self-manage/argo/charts/argo-cd
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        targetRevision: HEAD
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+  replicas: 1
+  resources:
+     limits:
+       cpu: 50m
+       memory: 128Mi
+     requests:
+       cpu: 10m
+       memory: 64Mi
