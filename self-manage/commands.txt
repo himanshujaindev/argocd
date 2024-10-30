@@ -1,5 +1,9 @@
 kind create cluster --name argocd --config kind.yml
 
+k create ns argocd
+kubens argocd
 helm3 template argo/charts/argo-cd --name-template argo-cd --namespace argocd -f argo/charts/argo-cd/custom/local.yaml | kubectl apply -f -
+
+k -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
 
 kind delete cluster --name argocd
