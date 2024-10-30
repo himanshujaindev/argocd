@@ -5,11 +5,14 @@ kubens argocd
 
 update .Chart variables in helper fn
 
+cd self-manage/
 helm3 template argo/charts/argo-cd --name-template argo-cd --namespace argocd -f argo/charts/argo-cd/custom/local.yaml | kubectl apply -f -
 
 k -n argocd port-forward service/argo-cd-argocd-server 8080:80
 k -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
 
-k apply -f application.yaml
+k apply -f argo-application.yaml
+
+k apply -f src/app-config/helm/base/wxcc-platform.yaml
 
 kind delete cluster --name argocd

@@ -1,5 +1,5 @@
 dcdemo:
-  name: 'himajai2-32-eks'
+  name: 'test-eks'
   cluster_url: 'https://kubernetes.default.svc'
   apps:
     example-chart:
