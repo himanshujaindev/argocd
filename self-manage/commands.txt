@@ -16,3 +16,5 @@ k apply -f argo-application.yaml
 k apply -f src/app-config/helm/base/wxcc-platform.yaml
 
 kind delete cluster --name argocd
+
+Source: https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
