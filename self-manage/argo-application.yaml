@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: argocd
   namespace: argocd
+  labels:
+    servicegroup: 'argocd'
 spec:
   project: default
 
@@ -14,13 +16,10 @@ spec:
       releaseName: argo-cd
       version: v3
       valueFiles:
-      - values.yaml
       - custom/local.yaml
       parameters:
       - name: namespace
         value: argocd
-      - name: fullnameOverride
-        value: argo-cd-argocd
 
   destination:
     server: https://kubernetes.default.svc
