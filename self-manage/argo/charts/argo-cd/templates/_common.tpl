@@ -3,7 +3,7 @@
 Expand the name of the chart.
 */}}
 {{- define "argo-cd.name" -}}
-{{- default "argo-cd" .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -15,7 +15,7 @@ If release name contains chart name it will be used as a full name.
 {{- if .Values.fullnameOverride -}}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := default "argo-cd" .Values.nameOverride -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
@@ -28,14 +28,14 @@ If release name contains chart name it will be used as a full name.
 Create chart name and version as used by the chart label.
 */}}
 {{- define "argo-cd.chart" -}}
-{{- printf "%s-%s" "argo-cd" "7.6.12" | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
 Create Argo CD app version
 */}}
 {{- define "argo-cd.defaultTag" -}}
-{{- default "v2.12.6" .Values.global.image.tag }}
+{{- default .Chart.AppVersion .Values.global.image.tag }}
 {{- end -}}
 
 {{/*
@@ -66,7 +66,7 @@ Selector labels
 {{- if .name -}}
 app.kubernetes.io/name: {{ include "argo-cd.name" .context }}-{{ .name }}
 {{ end -}}
-app.kubernetes.io/instance: "argo-cd"
+app.kubernetes.io/instance: {{ .context.Release.Name }}
 {{- if .component }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}

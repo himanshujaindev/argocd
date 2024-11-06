@@ -11,6 +11,7 @@ spec:
     targetRevision: main
     path: self-manage/argo/charts/argo-cd
     helm:
+      releaseName: argo-cd
       version: v3
       valueFiles:
       - values.yaml
