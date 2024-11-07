@@ -17,6 +17,26 @@ k apply -f argo-application.yaml
 
 k apply -f src/app-config/helm/base/wxcc-platform.yaml
 
+--
+
+Backup
+Argo Backup - https://argo-cd.readthedocs.io/en/latest/operator-manual/disaster_recovery/
+
+kubens argocd
+argocd admin cluster namespaces
+argocd admin cluster stats
+
+argocd version | grep server
+argocd admin export > backup.yaml
+argocd admin import - < backup.yaml
+
+❯ argocd admin import - < backup.yaml
+/ConfigMap argocd-cm created
+argoproj.io/Application argocd updated
+argoproj.io/Application test-eks-example-chart updated
+argoproj.io/ApplicationSet test-eks updated
+---
+
 kind delete cluster --name argocd
 
 Source: https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd

@@ -1,0 +1,1408 @@
+apiVersion: v1
+data:
+  admin.enabled: "true"
+  application.instanceLabelKey: argocd.argoproj.io/instance
+  exec.enabled: "false"
+  server.rbac.log.enforce.enable: "false"
+  statusbadge.enabled: "false"
+  timeout.hard.reconciliation: 0s
+  timeout.reconciliation: 180s
+  url: https://argocd.example.com
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"admin.enabled":"true","application.instanceLabelKey":"argocd.argoproj.io/instance","exec.enabled":"false","server.rbac.log.enforce.enable":"false","statusbadge.enabled":"false","timeout.hard.reconciliation":"0s","timeout.reconciliation":"180s","url":"https://argocd.example.com"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"server","app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-cm","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","argocd.argoproj.io/instance":"argocd","helm.sh/chart":"argo-cd-7.6.12"},"name":"argocd-cm","namespace":"argocd"}}
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    argocd.argoproj.io/instance: argocd
+    helm.sh/chart: argo-cd-7.6.12
+  name: argocd-cm
+---
+apiVersion: v1
+data:
+  policy.csv: ""
+  policy.default: ""
+  policy.matchMode: glob
+  scopes: '[groups]'
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"policy.csv":"","policy.default":"","policy.matchMode":"glob","scopes":"[groups]"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"server","app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-rbac-cm","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","argocd.argoproj.io/instance":"argocd","helm.sh/chart":"argo-cd-7.6.12"},"name":"argocd-rbac-cm","namespace":"argocd"}}
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    argocd.argoproj.io/instance: argocd
+    helm.sh/chart: argo-cd-7.6.12
+  name: argocd-rbac-cm
+---
+apiVersion: v1
+data:
+  ssh_known_hosts: |
+    [ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+    [ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+    [ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+    bitbucket.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPIQmuzMBuKdWeF4+a2sjSSpBK0iqitSQ+5BM9KhpexuGt20JpTVM7u5BDZngncgrqDMbWdxMWWOGtZ9UgbqgZE=
+    bitbucket.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIazEu89wgQZ4bqs3d63QSMzYVa0MuJ2e2gKTKqu+UUO
+    bitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQeJzhupRu0u0cdegZIa8e86EG2qOCsIsD1Xw0xSeiPDlCr7kq97NLmMbpKTX6Esc30NuoqEEHCuc7yWtwp8dI76EEEB1VqY9QJq6vk+aySyboD5QF61I/1WeTwu+deCbgKMGbUijeXhtfbxSxm6JwGrXrhBdofTsbKRUsrN1WoNgUa8uqN1Vx6WAJw1JHPhglEGGHea6QICwJOAr/6mrui/oB7pkaWKHj3z7d1IC4KWLtY47elvjbaTlkN04Kc/5LFEirorGYVbt15kAUlqGM65pk6ZBxtaO3+30LVlORZkxOh+LKL/BvbZ/iRNhItLqNyieoQj/uh/7Iv4uyH/cV/0b4WDSd3DptigWq84lJubb9t/DnZlrJazxyDCulTmKdOR7vs9gMTo+uoIrPSb8ScTtvw65+odKAlBj59dhnVp9zd7QUojOpXlL62Aw56U4oO+FALuevvMjiWeavKhJqlR7i5n9srYcrNV7ttmDw7kf/97P5zauIhxcjX+xHv4M=
+    github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+    github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+    github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+    gitlab.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFSMqzJeV9rUzU4kWitGjeR4PWSa29SPqJ1fVkhtj3Hw9xjLVXVYrU9QlYWrOLXBpQ6KWjbjTDTdDkoohFzgbEY=
+    gitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf
+    gitlab.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsj2bNKTBSpIYDEGk9KxsGh3mySTRgMtXL583qmBpzeQ+jqCMRgBqB98u3z++J1sKlXHWfM9dyhSevkMwSbhoR8XIq/U0tCNyokEi/ueaBMCvbcTHhO7FcwzY92WK4Yt0aGROY5qX2UKSeOvuP4D6TPqKF1onrSzH9bx9XUf2lEdWT/ia1NEKjunUqu1xOB/StKDHMoX4/OKyIzuS0q/T1zOATthvasJFoPrAjkohTyaDUz2LN5JoH839hViyEG82yB+MjcFV5MU3N1l1QL3cVUCh93xSaua1N85qivl+siMkPGbO5xR/En4iEY6K2XPASUEMaieWVNTRCtJ4S8H+9
+    ssh.dev.azure.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
+    vs-ssh.visualstudio.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"ssh_known_hosts":"[ssh.github.com]:443 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\n[ssh.github.com]:443 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\n[ssh.github.com]:443 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\nbitbucket.org ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPIQmuzMBuKdWeF4+a2sjSSpBK0iqitSQ+5BM9KhpexuGt20JpTVM7u5BDZngncgrqDMbWdxMWWOGtZ9UgbqgZE=\nbitbucket.org ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIazEu89wgQZ4bqs3d63QSMzYVa0MuJ2e2gKTKqu+UUO\nbitbucket.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDQeJzhupRu0u0cdegZIa8e86EG2qOCsIsD1Xw0xSeiPDlCr7kq97NLmMbpKTX6Esc30NuoqEEHCuc7yWtwp8dI76EEEB1VqY9QJq6vk+aySyboD5QF61I/1WeTwu+deCbgKMGbUijeXhtfbxSxm6JwGrXrhBdofTsbKRUsrN1WoNgUa8uqN1Vx6WAJw1JHPhglEGGHea6QICwJOAr/6mrui/oB7pkaWKHj3z7d1IC4KWLtY47elvjbaTlkN04Kc/5LFEirorGYVbt15kAUlqGM65pk6ZBxtaO3+30LVlORZkxOh+LKL/BvbZ/iRNhItLqNyieoQj/uh/7Iv4uyH/cV/0b4WDSd3DptigWq84lJubb9t/DnZlrJazxyDCulTmKdOR7vs9gMTo+uoIrPSb8ScTtvw65+odKAlBj59dhnVp9zd7QUojOpXlL62Aw56U4oO+FALuevvMjiWeavKhJqlR7i5n9srYcrNV7ttmDw7kf/97P5zauIhxcjX+xHv4M=\ngithub.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=\ngithub.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl\ngithub.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=\ngitlab.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFSMqzJeV9rUzU4kWitGjeR4PWSa29SPqJ1fVkhtj3Hw9xjLVXVYrU9QlYWrOLXBpQ6KWjbjTDTdDkoohFzgbEY=\ngitlab.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRdf\ngitlab.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsj2bNKTBSpIYDEGk9KxsGh3mySTRgMtXL583qmBpzeQ+jqCMRgBqB98u3z++J1sKlXHWfM9dyhSevkMwSbhoR8XIq/U0tCNyokEi/ueaBMCvbcTHhO7FcwzY92WK4Yt0aGROY5qX2UKSeOvuP4D6TPqKF1onrSzH9bx9XUf2lEdWT/ia1NEKjunUqu1xOB/StKDHMoX4/OKyIzuS0q/T1zOATthvasJFoPrAjkohTyaDUz2LN5JoH839hViyEG82yB+MjcFV5MU3N1l1QL3cVUCh93xSaua1N85qivl+siMkPGbO5xR/En4iEY6K2XPASUEMaieWVNTRCtJ4S8H+9\nssh.dev.azure.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H\nvs-ssh.visualstudio.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7Hr1oTWqNqOlzGJOfGJ4NakVyIzf1rXYd4d7wo6jBlkLvCA4odBlL0mDUyZ0/QUfTTqeu+tm22gOsv+VrVTMk6vwRU75gY/y9ut5Mb3bR5BV58dKXyq9A9UeB5Cakehn5Zgm6x1mKoVyf+FFn26iYqXJRgzIZZcZ5V6hrE0Qg39kZm4az48o0AUbf6Sp4SLdvnuMa2sVNwHBboS7EJkm57XQPVU3/QpyNLHbWDdzwtrlS+ez30S3AdYhLKEOxAG8weOnyrtLJAUen9mTkol8oII1edf7mWWbWVf0nBmly21+nZcmCTISQBtdcyPaEno7fFQMDD26/s0lfKob4Kw8H\n"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-ssh-known-hosts-cm","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","argocd.argoproj.io/instance":"argocd","helm.sh/chart":"argo-cd-7.6.12"},"name":"argocd-ssh-known-hosts-cm","namespace":"argocd"}}
+  labels:
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-ssh-known-hosts-cm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    argocd.argoproj.io/instance: argocd
+    helm.sh/chart: argo-cd-7.6.12
+  name: argocd-ssh-known-hosts-cm
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-tls-certs-cm","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","argocd.argoproj.io/instance":"argocd","helm.sh/chart":"argo-cd-7.6.12"},"name":"argocd-tls-certs-cm","namespace":"argocd"}}
+  labels:
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-tls-certs-cm
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    argocd.argoproj.io/instance: argocd
+    helm.sh/chart: argo-cd-7.6.12
+  name: argocd-tls-certs-cm
+---
+apiVersion: v1
+data:
+  admin.password: JDJhJDEwJFBDZlBjQjdQdHhaaTZBVElyalguL3UzaktqanNEaXFCNzFWajZSbkl1bWdHNXRHcXplRXdx
+  admin.passwordMtime: MjAyNC0xMS0wN1QwNzozMzoxOFo=
+  server.secretkey: WXh4QXhtZVdUQmxNZ0pIOUtqVklnOERpaXN3clJSVDhPM1Y2YS92bWFoUT0=
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURZakNDQWtxZ0F3SUJBZ0lRQXJkZHFnMFloNStVZGNrMUNUVVN6REFOQmdrcWhraUc5dzBCQVFzRkFEQVMKTVJBd0RnWURWUVFLRXdkQmNtZHZJRU5FTUI0WERUSTBNVEV3TnpBM016TXlNbG9YRFRJMU1URXdOekEzTXpNeQpNbG93RWpFUU1BNEdBMVVFQ2hNSFFYSm5ieUJEUkRDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDCkFRb0NnZ0VCQU1QL0UzM0s4dGYwSDhyajdVWGZkeVVFeW13MFA1WEN5d3k0dWRtVDZBVUJqLzNGakl4UXJFcTUKTVBWNDh3RkNjSlhuSGNJZlFhTEhMcllEa2Q1b0JGMXVpcGx5VnYyRW9OQTBLL3M4UHE1d21BYmdZdWw1V043WAp6UDlacngzdGg2eElIUVR4c1NxeVRaRDJ1SlVRQ1JHMkJJY01nTVU5TERnd0JwSVBnbUQxM3dUTDJiY3lPZWZjCitUNkNTQmd1cFVLcGRUdXZvblIvVXljZngwOEo2bGhIcy9zTWcxSU9DK0tuSmhmUmhrUzRZUWxSRCs4TGNkRlMKajVEMTVmQzFyRWNBbUFNa2RMdHJrZUdUVEpXclFzOEp2R0NoWU5NZVdQSWF4MlgyZmFEOXE3M0tmaXFxTDlZRgpqbkwyaWtsSVJvTkEwWFdNVCtOMFhjSll4SlgyaHdjQ0F3RUFBYU9Cc3pDQnNEQU9CZ05WSFE4QkFmOEVCQU1DCkJhQXdFd1lEVlIwbEJBd3dDZ1lJS3dZQkJRVUhBd0V3REFZRFZSMFRBUUgvQkFJd0FEQjdCZ05WSFJFRWREQnkKZ2dsc2IyTmhiR2h2YzNTQ0RXRnlaMjlqWkMxelpYSjJaWEtDRkdGeVoyOWpaQzF6WlhKMlpYSXVZWEpuYjJOawpnaGhoY21kdlkyUXRjMlZ5ZG1WeUxtRnlaMjlqWkM1emRtT0NKbUZ5WjI5alpDMXpaWEoyWlhJdVlYSm5iMk5rCkxuTjJZeTVqYkhWemRHVnlMbXh2WTJGc01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQW1PT041cGpDTGt2QXUKWFhPNmk2S2xNNktLZ2FwTzQ3RGY2V2MySEpCSks5TkxPcy9MalRZZndUbVJuUlZwMWhOR2wvRThvYVB4R3BBSwpzUnEwNEQ1ZHdaVWNmVnhjN09LaEFHZ1ErSXh3SUQyaGlhMjZEV3h3Z0tMZ0lKNjd6ZmlkRVpPdWdXMzd0b3RyCnl3a1BPR2tmbWVuUGQwdlFjaWwzQmtqc1VvVFNOTG5TZFpxam1vdG05a0dHSzdTY3B3cTEyRWFUS2d4dmE2emQKOTVjNksvLzBnVkxseC9YN0dyTVFWbkxidTZ0QzJGUk9PZmVYdkZjc1NUaHo3bnZWYXFIQmxPbkhNOEo0YWZlQwo5MFZqQ2ZoNHl1VElWbUgvZ3UxemJxbWUxdTRudk5MNjN4ZE55KzZvM2V6NS83U1ZnbTVRaDVmUUU2U0t3MDNRClBDa0lYQkFFCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  tls.key: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFcEFJQkFBS0NBUUVBdy84VGZjcnkxL1FmeXVQdFJkOTNKUVRLYkRRL2xjTExETGk1MlpQb0JRR1AvY1dNCmpGQ3NTcmt3OVhqekFVSndsZWNkd2g5Qm9zY3V0Z09SM21nRVhXNkttWEpXL1lTZzBEUXIrencrcm5DWUJ1QmkKNlhsWTN0Zk0vMW12SGUySHJFZ2RCUEd4S3JKTmtQYTRsUkFKRWJZRWh3eUF4VDBzT0RBR2tnK0NZUFhmQk12Wgp0ekk1NTl6NVBvSklHQzZsUXFsMU82K2lkSDlUSngvSFR3bnFXRWV6K3d5RFVnNEw0cWNtRjlHR1JMaGhDVkVQCjd3dHgwVktQa1BYbDhMV3NSd0NZQXlSMHUydVI0Wk5NbGF0Q3p3bThZS0ZnMHg1WThockhaZlo5b1AycnZjcCsKS3FvdjFnV09jdmFLU1VoR2cwRFJkWXhQNDNSZHdsakVsZmFIQndJREFRQUJBb0lCQUVIMVNuTHY1SSttV1RpbgpRY2RjNzdTbWl4U2s5SzBLazlpaEpmSkI0emdrRVhnZWpqRCtTUzBRYTVpQWJvOEM4KzZPaTZZemJKeENHY2NwCkptTEpjSWFjMThuUi85SnJXczhXYjZLcDRKSkYwL09rZWNVR2tGRFdJT2ZpSDV1YnZ5Zk1VTy9FQXBKUzFPV3YKRWVrZ0wxMGxleHFUcTVZMUF2ZVp1ZXhYaWRIazlPNVdZZDgwQVhVekJqRHQ1eW1CS09OVWFRWTlnTzZodDdWMgpIU2lWSlFtMnhPcDRXVUhyNU45a1JZMUEyM0UvT3NvY2FEZEFnTEtYWjRKdVlYVUxiVnM3emN2Z09FM1JYSk1PCkhZeDhlSGJYZjFjZElNajd4MHN0ZlJ6VFZpcE92VWNCYnYyTEV0cnpYK3lydHZpUk5jMXJSczRaV0l4RzlDM3MKcmlGQ3dpRUNnWUVBeWtENHo2d3JoTTJXb2s1OEhlODBqRW94Z3hCMmc1L0hmeVhEZ2svT3d4cElhZEpMWExLdwp4REpwcStuUFlpUTJoNEUxWDFrU1RQM2ZGdVc1TUFvUkJ3azRPakkyQVl6b3hWQWNkdmFBZDEwL0g3a29LckU3CmNZMEM4Q09RVUR3YkpMZXg5Rkk1Z25CK3pNQ281bncrVzRuOGh6Snd3WndZeStubHdxZE8yTmNDZ1lFQStCUnMKRVdzbDVucFgyYjNHV0xCdVVUekFSMkhtTWhBUEU1eUtoSUVhSlhyQWwxSng3QnRVUFlSZjB2Vk5Qb0pmWUNCaAo5UFVCZlhoZDlqZENBVHBKZWdyd3psMWJYd1R2OHpSSXRpSzVmdmpBSU4zS1dSU3VwL0FqMmVFRkYvV2VNeWJ2CnR5a3JJaExHWTdrUUhReEkrZTJpb2NuczJoYzNXWGhVbUgzbkRWRUNnWUVBbUxjNGFDN2JhVnFIRENUeENQVk8KbTBPR1lTMTBIMnp0Q08rdDBWNkxnN3Y3dzVPYmZmSWJFUG56Mm5BZ1BEMlZ3dmxvSUllMER0aCtzOTVmMTRzeQpVanErN3dwc3h2enI0ZGpjdFdMcG03ZVg2MDgycWczTEViRms3NGdhOXNwN3dGeklEUEJ0SmpYbE9KdWNyUFJSCmJYTWliNzlCYnA5OEJiU2wzVFhSamw4Q2dZRUFpU0tnNnJBVWIyZktFRys3cVdNK1dHSUEySFRoejJMWk1yb2kKU0VVbHN2bzhaR29LMTczenYxM2hxcmczVHdxNnRtU3dRYnorYWVHVDczdDBYVUZmUkx1dmlpUkpVaWxraTBpbgp1U2RRNjBPTzBaeEpNeDBmdjI0Y0kyRWtjNjR2R1krNGk4T1NPRyt3ZzRmVnhIajZEazZ5ekVUWFRXZndET0ZiCndrQTI3VUVDZ1lCZmhvUTBPeDhLc2tnak8zR3FIeHRJZHdTaWZzdVE5bGY4MmNGS2s1dW00S2hUS0ozb3pCYjMKVU5GSlJkY2Z1R1pJYmdCcGtXRC9YTzBvd044YVN2Z2VMZmZqSUM3M1BzTEJEU1ZOZkNiNHpwamZFanZ1SGNIMApIREtDOUdlT2pXdjhlZ3RCNGdMRHJzK2JRYjQ3Z1dsNGxZVFBHN0Nib0NYcS9iUk1MRG9aVFE9PQotLS0tLUVORCBSU0EgUFJJVkFURSBLRVktLS0tLQo=
+kind: Secret
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Secret","metadata":{"annotations":{},"labels":{"app.kubernetes.io/component":"server","app.kubernetes.io/instance":"argo-cd","app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"argocd-secret","app.kubernetes.io/part-of":"argocd","app.kubernetes.io/version":"v2.12.6","argocd.argoproj.io/instance":"argocd","helm.sh/chart":"argo-cd-7.6.12"},"name":"argocd-secret","namespace":"argocd"},"type":"Opaque"}
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/instance: argo-cd
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: argocd-secret
+    app.kubernetes.io/part-of: argocd
+    app.kubernetes.io/version: v2.12.6
+    argocd.argoproj.io/instance: argocd
+    helm.sh/chart: argo-cd-7.6.12
+  name: argocd-secret
+type: Opaque
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: default
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'
+status: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"Application","metadata":{"annotations":{},"labels":{"servicegroup":"argocd"},"name":"argocd","namespace":"argocd"},"spec":{"destination":{"namespace":"argocd","server":"https://kubernetes.default.svc"},"project":"default","source":{"helm":{"parameters":[{"name":"namespace","value":"argocd"}],"releaseName":"argo-cd","valueFiles":["custom/local.yaml"],"version":"v3"},"path":"self-manage/argo/charts/argo-cd","repoURL":"https://github.com/himanshujaindev/argocd.git","targetRevision":"main"},"syncPolicy":{"automated":{"prune":true,"selfHeal":false}}}}
+  labels:
+    servicegroup: argocd
+  name: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: namespace
+        value: argocd
+      releaseName: argo-cd
+      valueFiles:
+      - custom/local.yaml
+      version: v3
+    path: self-manage/argo/charts/argo-cd
+    repoURL: https://github.com/himanshujaindev/argocd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+status:
+  controllerNamespace: argocd
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2024-11-07T07:42:32Z"
+    deployedAt: "2024-11-07T07:42:47Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+    source:
+      helm:
+        parameters:
+        - name: namespace
+          value: argocd
+        releaseName: argo-cd
+        valueFiles:
+        - custom/local.yaml
+        version: v3
+      path: self-manage/argo/charts/argo-cd
+      repoURL: https://github.com/himanshujaindev/argocd.git
+      targetRevision: main
+  operationState:
+    finishedAt: "2024-11-07T07:42:47Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+    phase: Succeeded
+    startedAt: "2024-11-07T07:42:32Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Succeeded
+        hookType: PreSync
+        kind: ServiceAccount
+        message: argo-cd-argocd-redis-secret-init created
+        name: argo-cd-argocd-redis-secret-init
+        namespace: argocd
+        syncPhase: PreSync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Succeeded
+        hookType: PreSync
+        kind: Role
+        message: argo-cd-argocd-redis-secret-init created
+        name: argo-cd-argocd-redis-secret-init
+        namespace: argocd
+        syncPhase: PreSync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Succeeded
+        hookType: PreSync
+        kind: RoleBinding
+        message: argo-cd-argocd-redis-secret-init created
+        name: argo-cd-argocd-redis-secret-init
+        namespace: argocd
+        syncPhase: PreSync
+        version: v1
+      - group: batch
+        hookPhase: Succeeded
+        hookType: PreSync
+        kind: Job
+        message: Reached expected number of succeeded pods
+        name: argo-cd-argocd-redis-secret-init
+        namespace: argocd
+        syncPhase: PreSync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argocd-application-controller configured
+        name: argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argocd-dex-server configured
+        name: argocd-dex-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argocd-server configured
+        name: argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argocd-applicationset-controller configured
+        name: argocd-applicationset-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argocd-notifications-controller configured
+        name: argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ServiceAccount
+        message: serviceaccount/argo-cd-argocd-repo-server configured
+        name: argo-cd-argocd-repo-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Secret
+        message: secret/argocd-secret configured
+        name: argocd-secret
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Secret
+        message: secret/argocd-notifications-secret configured
+        name: argocd-notifications-secret
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argo-cd-argocd-redis-health-configmap configured
+        name: argo-cd-argocd-redis-health-configmap
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-gpg-keys-cm configured
+        name: argocd-gpg-keys-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-cm configured
+        name: argocd-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-tls-certs-cm configured
+        name: argocd-tls-certs-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-cmd-params-cm configured
+        name: argocd-cmd-params-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-notifications-cm configured
+        name: argocd-notifications-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-ssh-known-hosts-cm configured
+        name: argocd-ssh-known-hosts-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: ConfigMap
+        message: configmap/argocd-rbac-cm configured
+        name: argocd-rbac-cm
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/appprojects.argoproj.io
+          unchanged
+        name: appprojects.argoproj.io
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/applications.argoproj.io
+          unchanged
+        name: applications.argoproj.io
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apiextensions.k8s.io
+        hookPhase: Running
+        kind: CustomResourceDefinition
+        message: customresourcedefinition.apiextensions.k8s.io/applicationsets.argoproj.io
+          unchanged
+        name: applicationsets.argoproj.io
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          reconciled. reconciliation required update. clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          configured
+        name: argo-cd-argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-server reconciled.
+          reconciliation required update. clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-server
+          configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRole
+        message: clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          reconciled. reconciliation required update. clusterrole.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          configured
+        name: argo-cd-argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-server
+          reconciled. reconciliation required update. clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-server
+          configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          reconciled. reconciliation required update. clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          configured
+        name: argo-cd-argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: ClusterRoleBinding
+        message: clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          reconciled. reconciliation required update. clusterrolebinding.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          configured
+        name: argo-cd-argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-server reconciled.
+          reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-server
+          configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-repo-server reconciled.
+          reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-repo-server
+          configured
+        name: argo-cd-argocd-repo-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-applicationset-controller
+          reconciled. reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-applicationset-controller
+          configured
+        name: argo-cd-argocd-applicationset-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-dex-server reconciled.
+          reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-dex-server
+          configured
+        name: argo-cd-argocd-dex-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          reconciled. reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          configured
+        name: argo-cd-argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: Role
+        message: role.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          reconciled. reconciliation required update. role.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          configured
+        name: argo-cd-argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-applicationset-controller
+          reconciled. reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-applicationset-controller
+          configured
+        name: argo-cd-argocd-applicationset-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-server reconciled.
+          reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-server
+          configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          reconciled. reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-notifications-controller
+          configured
+        name: argo-cd-argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          reconciled. reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-application-controller
+          configured
+        name: argo-cd-argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-dex-server reconciled.
+          reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-dex-server
+          configured
+        name: argo-cd-argocd-dex-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: rbac.authorization.k8s.io
+        hookPhase: Running
+        kind: RoleBinding
+        message: rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-repo-server
+          reconciled. reconciliation required update. rolebinding.rbac.authorization.k8s.io/argo-cd-argocd-repo-server
+          configured
+        name: argo-cd-argocd-repo-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argo-cd-argocd-server configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argo-cd-argocd-applicationset-controller configured
+        name: argo-cd-argocd-applicationset-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argo-cd-argocd-dex-server configured
+        name: argo-cd-argocd-dex-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argo-cd-argocd-repo-server configured
+        name: argo-cd-argocd-repo-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: ""
+        hookPhase: Running
+        kind: Service
+        message: service/argo-cd-argocd-redis configured
+        name: argo-cd-argocd-redis
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-dex-server configured
+        name: argo-cd-argocd-dex-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-redis configured
+        name: argo-cd-argocd-redis
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-server configured
+        name: argo-cd-argocd-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-notifications-controller configured
+        name: argo-cd-argocd-notifications-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-applicationset-controller configured
+        name: argo-cd-argocd-applicationset-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/argo-cd-argocd-repo-server configured
+        name: argo-cd-argocd-repo-server
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: StatefulSet
+        message: statefulset.apps/argo-cd-argocd-application-controller configured
+        name: argo-cd-argocd-application-controller
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+      source:
+        helm:
+          parameters:
+          - name: namespace
+            value: argocd
+          releaseName: argo-cd
+          valueFiles:
+          - custom/local.yaml
+          version: v3
+        path: self-manage/argo/charts/argo-cd
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        targetRevision: main
+  reconciledAt: "2024-11-07T07:48:22Z"
+  resources:
+  - kind: ConfigMap
+    name: argo-cd-argocd-redis-health-configmap
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-cmd-params-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-gpg-keys-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-notifications-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-rbac-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-ssh-known-hosts-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ConfigMap
+    name: argocd-tls-certs-cm
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: Secret
+    name: argocd-notifications-secret
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: Secret
+    name: argocd-secret
+    namespace: argocd
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: argo-cd-argocd-applicationset-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: argo-cd-argocd-dex-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: argo-cd-argocd-redis
+    namespace: argocd
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: argo-cd-argocd-repo-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - health:
+      status: Healthy
+    kind: Service
+    name: argo-cd-argocd-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - hook: true
+    kind: ServiceAccount
+    name: argo-cd-argocd-redis-secret-init
+    namespace: argocd
+    requiresPruning: true
+    version: v1
+  - kind: ServiceAccount
+    name: argo-cd-argocd-repo-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: argocd-application-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: argocd-applicationset-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: argocd-dex-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: argocd-notifications-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - kind: ServiceAccount
+    name: argocd-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: applications.argoproj.io
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: applicationsets.argoproj.io
+    status: Synced
+    version: v1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    name: appprojects.argoproj.io
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-applicationset-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-dex-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-notifications-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-redis
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-repo-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      status: Healthy
+    kind: Deployment
+    name: argo-cd-argocd-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: apps
+    health:
+      message: 'partitioned roll out complete: 1 new pods have been updated...'
+      status: Healthy
+    kind: StatefulSet
+    name: argo-cd-argocd-application-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: argo-cd-argocd-application-controller
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: argo-cd-argocd-notifications-controller
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: argo-cd-argocd-server
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: argo-cd-argocd-application-controller
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: argo-cd-argocd-notifications-controller
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+    name: argo-cd-argocd-server
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-application-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-applicationset-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-dex-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-notifications-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    hook: true
+    kind: Role
+    name: argo-cd-argocd-redis-secret-init
+    namespace: argocd
+    requiresPruning: true
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-repo-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: Role
+    name: argo-cd-argocd-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-application-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-applicationset-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-dex-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-notifications-controller
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    hook: true
+    kind: RoleBinding
+    name: argo-cd-argocd-redis-secret-init
+    namespace: argocd
+    requiresPruning: true
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-repo-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  - group: rbac.authorization.k8s.io
+    kind: RoleBinding
+    name: argo-cd-argocd-server
+    namespace: argocd
+    status: Synced
+    version: v1
+  sourceType: Helm
+  summary:
+    images:
+    - ghcr.io/dexidp/dex:v2.38.0
+    - public.ecr.aws/docker/library/redis:7.2.4-alpine
+    - quay.io/argoproj/argocd:v2.12.6
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        helm:
+          parameters:
+          - name: namespace
+            value: argocd
+          releaseName: argo-cd
+          valueFiles:
+          - custom/local.yaml
+          version: v3
+        path: self-manage/argo/charts/argo-cd
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        targetRevision: main
+    revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+    status: Synced
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  labels:
+    environment: dev
+  name: test-eks-example-chart
+spec:
+  destination:
+    namespace: pf
+    server: https://kubernetes.default.svc
+  project: default
+  sources:
+  - helm:
+      parameters:
+      - name: image.tag
+        value: latest
+      releaseName: example-chart
+      valueFiles:
+      - custom/dev.yaml
+    path: chart
+    repoURL: https://github.com/himanshujaindev/example-chart.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+    - Validate=true
+    - ApplyOutOfSyncOnly=true
+status:
+  controllerNamespace: argocd
+  health:
+    status: Progressing
+  history:
+  - deployStartedAt: "2024-11-07T07:43:02Z"
+    deployedAt: "2024-11-07T07:43:05Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revisions:
+    - 0aaae382367be77db47b7ba1046d099948d9aef5
+    source:
+      repoURL: ""
+    sources:
+    - helm:
+        parameters:
+        - name: image.tag
+          value: latest
+        releaseName: example-chart
+        valueFiles:
+        - custom/dev.yaml
+      path: chart
+      repoURL: https://github.com/himanshujaindev/example-chart.git
+      targetRevision: main
+  operationState:
+    finishedAt: "2024-11-07T07:43:05Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revisions:
+        - 0aaae382367be77db47b7ba1046d099948d9aef5
+        syncOptions:
+        - CreateNamespace=true
+        - Validate=true
+        - ApplyOutOfSyncOnly=true
+    phase: Succeeded
+    startedAt: "2024-11-07T07:43:02Z"
+    syncResult:
+      resources:
+      - group: ""
+        hookPhase: Running
+        kind: Namespace
+        message: namespace/pf created
+        name: pf
+        namespace: ""
+        status: Synced
+        syncPhase: PreSync
+        version: v1
+      - group: apps
+        hookPhase: Running
+        kind: Deployment
+        message: deployment.apps/app1 created
+        name: app1
+        namespace: pf
+        status: Synced
+        syncPhase: Sync
+        version: v1
+      revision: ""
+      revisions:
+      - 0aaae382367be77db47b7ba1046d099948d9aef5
+      source:
+        repoURL: ""
+      sources:
+      - helm:
+          parameters:
+          - name: image.tag
+            value: latest
+          releaseName: example-chart
+          valueFiles:
+          - custom/dev.yaml
+        path: chart
+        repoURL: https://github.com/himanshujaindev/example-chart.git
+        targetRevision: main
+  reconciledAt: "2024-11-07T07:50:19Z"
+  resources:
+  - group: apps
+    health:
+      message: 'Waiting for rollout to finish: 2 of 4 updated replicas are available...'
+      status: Progressing
+    kind: Deployment
+    name: app1
+    namespace: pf
+    status: Synced
+    version: v1
+  sourceTypes:
+  - Helm
+  summary:
+    images:
+    - nginx:latest
+  sync:
+    comparedTo:
+      destination:
+        namespace: pf
+        server: https://kubernetes.default.svc
+      source:
+        repoURL: ""
+      sources:
+      - helm:
+          parameters:
+          - name: image.tag
+            value: latest
+          releaseName: example-chart
+          valueFiles:
+          - custom/dev.yaml
+        path: chart
+        repoURL: https://github.com/himanshujaindev/example-chart.git
+        targetRevision: main
+    revisions:
+    - 0aaae382367be77db47b7ba1046d099948d9aef5
+    status: Synced
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"Application","metadata":{"annotations":{},"finalizers":["resources-finalizer.argocd.argoproj.io"],"name":"wxcc-platform","namespace":"argocd"},"spec":{"destination":{"namespace":"argocd","server":"https://kubernetes.default.svc"},"project":"default","source":{"path":"src/app-config/helm","repoURL":"https://github.com/himanshujaindev/argocd.git","targetRevision":"main"},"syncPolicy":{"automated":{"prune":true,"selfHeal":false},"syncOptions":["CreateNamespace=true","Validate=true","ApplyOutOfSyncOnly=true"]}}}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: wxcc-platform
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: src/app-config/helm
+    repoURL: https://github.com/himanshujaindev/argocd.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+    - Validate=true
+    - ApplyOutOfSyncOnly=true
+status:
+  controllerNamespace: argocd
+  health:
+    status: Healthy
+  history:
+  - deployStartedAt: "2024-11-07T07:42:58Z"
+    deployedAt: "2024-11-07T07:42:58Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+    source:
+      path: src/app-config/helm
+      repoURL: https://github.com/himanshujaindev/argocd.git
+      targetRevision: main
+  operationState:
+    finishedAt: "2024-11-07T07:42:58Z"
+    message: successfully synced (all tasks run)
+    operation:
+      initiatedBy:
+        automated: true
+      retry:
+        limit: 5
+      sync:
+        prune: true
+        revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+        syncOptions:
+        - CreateNamespace=true
+        - Validate=true
+        - ApplyOutOfSyncOnly=true
+    phase: Succeeded
+    startedAt: "2024-11-07T07:42:58Z"
+    syncResult:
+      resources:
+      - group: argoproj.io
+        hookPhase: Running
+        kind: ApplicationSet
+        message: applicationset.argoproj.io/test-eks created
+        name: test-eks
+        namespace: argocd
+        status: Synced
+        syncPhase: Sync
+        version: v1alpha1
+      revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+      source:
+        path: src/app-config/helm
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        targetRevision: main
+  reconciledAt: "2024-11-07T07:50:20Z"
+  resources:
+  - group: argoproj.io
+    health:
+      message: ApplicationSet up to date
+      status: Healthy
+    kind: ApplicationSet
+    name: test-eks
+    namespace: argocd
+    status: Synced
+    version: v1alpha1
+  sourceType: Helm
+  summary: {}
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        path: src/app-config/helm
+        repoURL: https://github.com/himanshujaindev/argocd.git
+        targetRevision: main
+    revision: 030cc80c9817f61c835a1ffcdc2b6cdfc62dd0ed
+    status: Synced
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"ApplicationSet","metadata":{"annotations":{},"labels":{"argocd.argoproj.io/instance":"wxcc-platform"},"name":"test-eks","namespace":"argocd"},"spec":{"generators":[{"list":{"elements":[{"namespace":"pf","path":"chart","repo":"https://github.com/himanshujaindev/example-chart.git","service":"example-chart","syncWave":"0","targetRevision":"main","valueFiles":["custom/dev.yaml"],"valueOverride":[{"name":"image.tag","value":"latest"}]}]}}],"goTemplate":true,"goTemplateOptions":["missingkey=error"],"template":{"metadata":{"labels":{"environment":"dev"},"name":"test-eks-{{.service}}"},"spec":{"destination":{"namespace":"{{.namespace}}","server":"https://kubernetes.default.svc"},"project":"default","syncPolicy":{"automated":{"prune":true,"selfHeal":false},"syncOptions":["CreateNamespace=true","Validate=true","ApplyOutOfSyncOnly=true"]}}},"templatePatch":"{{ if ne .syncWave \"\"}}\nmetadata:\n  annotations:\n    argocd.argoproj.io/sync-wave: '{{.syncWave}}'\n{{ end -}}\nspec:\n  sources:\n    - repoURL: '{{.repo}}'\n      targetRevision: '{{.targetRevision}}'\n      path: '{{.path}}'\n      helm:\n        releaseName: '{{.service}}'\n        valueFiles:\n        {{ range .valueFiles -}}\n        - '{{.}}'\n        {{ end }}\n        parameters:\n        {{ range .valueOverride -}}\n        - name: '{{.name}}'\n          value: '{{.value}}'\n        {{ end }}\n"}}
+  labels:
+    argocd.argoproj.io/instance: wxcc-platform
+  name: test-eks
+spec:
+  generators:
+  - list:
+      elements:
+      - namespace: pf
+        path: chart
+        repo: https://github.com/himanshujaindev/example-chart.git
+        service: example-chart
+        syncWave: "0"
+        targetRevision: main
+        valueFiles:
+        - custom/dev.yaml
+        valueOverride:
+        - name: image.tag
+          value: latest
+  goTemplate: true
+  goTemplateOptions:
+  - missingkey=error
+  template:
+    metadata:
+      labels:
+        environment: dev
+      name: test-eks-{{.service}}
+    spec:
+      destination:
+        namespace: '{{.namespace}}'
+        server: https://kubernetes.default.svc
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+        - CreateNamespace=true
+        - Validate=true
+        - ApplyOutOfSyncOnly=true
+  templatePatch: |
+    {{ if ne .syncWave ""}}
+    metadata:
+      annotations:
+        argocd.argoproj.io/sync-wave: '{{.syncWave}}'
+    {{ end -}}
+    spec:
+      sources:
+        - repoURL: '{{.repo}}'
+          targetRevision: '{{.targetRevision}}'
+          path: '{{.path}}'
+          helm:
+            releaseName: '{{.service}}'
+            valueFiles:
+            {{ range .valueFiles -}}
+            - '{{.}}'
+            {{ end }}
+            parameters:
+            {{ range .valueOverride -}}
+            - name: '{{.name}}'
+              value: '{{.value}}'
+            {{ end }}
+status:
+  conditions:
+  - lastTransitionTime: "2024-11-07T07:42:58Z"
+    message: Successfully generated parameters for all Applications
+    reason: ApplicationSetUpToDate
+    status: "False"
+    type: ErrorOccurred
+  - lastTransitionTime: "2024-11-07T07:42:58Z"
+    message: Successfully generated parameters for all Applications
+    reason: ParametersGenerated
+    status: "True"
+    type: ParametersGenerated
+  - lastTransitionTime: "2024-11-07T07:42:58Z"
+    message: ApplicationSet up to date
+    reason: ApplicationSetUpToDate
+    status: "True"
+    type: ResourcesUpToDate
+  resources:
+  - group: argoproj.io
+    health: {}
+    kind: Application
+    name: test-eks-example-chart
+    namespace: argocd
+    version: v1alpha1
+---
