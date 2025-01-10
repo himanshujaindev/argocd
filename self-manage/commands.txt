@@ -1,6 +1,6 @@
-cd self-manage/
-
 kind create cluster --name argocd --config kind.yml
+
+cd self-manage/
 
 k create ns argocd
 kubens argocd

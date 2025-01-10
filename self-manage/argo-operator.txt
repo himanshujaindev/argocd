@@ -1,0 +1,52 @@
+kind create cluster --name argocd --config kind.yml
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.16.2/cert-manager.yaml
+
+git clone https://github.com/argoproj-labs/argocd-operator.git
+cd self-manage/argocd-operator/
+git checkout tags/v0.13.0
+UPDATE config from documentation
+make deploy
+
+
+
+namespace/argocd-operator-system serverside-applied
+customresourcedefinition.apiextensions.k8s.io/applications.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/applicationsets.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/appprojects.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/argocdexports.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/argocds.argoproj.io serverside-applied
+customresourcedefinition.apiextensions.k8s.io/notificationsconfigurations.argoproj.io serverside-applied
+serviceaccount/argocd-operator-controller-manager serverside-applied
+role.rbac.authorization.k8s.io/argocd-operator-leader-election-role serverside-applied
+clusterrole.rbac.authorization.k8s.io/argocd-operator-manager-role serverside-applied
+clusterrole.rbac.authorization.k8s.io/argocd-operator-metrics-reader serverside-applied
+clusterrole.rbac.authorization.k8s.io/argocd-operator-proxy-role serverside-applied
+rolebinding.rbac.authorization.k8s.io/argocd-operator-leader-election-rolebinding serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/argocd-operator-manager-rolebinding serverside-applied
+clusterrolebinding.rbac.authorization.k8s.io/argocd-operator-proxy-rolebinding serverside-applied
+configmap/argocd-operator-manager-config serverside-applied
+service/argocd-operator-controller-manager-metrics-service serverside-applied
+service/argocd-operator-webhook-service serverside-applied
+deployment.apps/argocd-operator-controller-manager serverside-applied
+certificate.cert-manager.io/argocd-operator-serving-cert serverside-applied
+issuer.cert-manager.io/argocd-operator-selfsigned-issuer serverside-applied
+
+
+k create ns argocd
+k apply -f src/argocd-operator/namespace.yaml
+kubens argocd
+k apply -f src/argocd-operator/create-argocd-cluster.yaml
+
+
+k -n argocd port-forward service/argocd-server 8080:80
+k -n argocd get secrets argocd-cluster -o jsonpath='{.data.admin\.password}' | base64 -d
+
+k apply -f src/application.yaml
+
+<NOT WORKING>
+k apply -f src/applicationset.yaml
+k apply -f src/app-config/helm/base/wxcc-platform.yaml
+
+
+kind delete cluster --name argocd
