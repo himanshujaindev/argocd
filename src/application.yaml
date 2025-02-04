@@ -16,7 +16,10 @@ spec:
     namespace: default
 
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
     syncOptions:
         - Validate=true
-        - ApplyOutOfSyncOnly=true
+        - ApplyOutOfSyncOnly=false
         - RespectIgnoreDifferences=true
