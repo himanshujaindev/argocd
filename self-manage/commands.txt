@@ -1,3 +1,5 @@
+upstream folder has helm files from upstream
+
 kind create cluster --name argocd --config kind.yml
 
 cd self-manage/
@@ -5,10 +7,10 @@ cd self-manage/
 k create ns argocd
 kubens argocd
 
-helm3 repo add dandydeveloper https://dandydeveloper.github.io/charts/
-helm3 repo update
-helm3 dependency build argo/charts/argo-cd
-helm3 template argo/charts/argo-cd --name-template argo-cd --namespace argocd -f argo/charts/argo-cd/custom/local.yaml | kubectl apply -f -
+helm repo add dandydeveloper https://dandydeveloper.github.io/charts/
+helm repo update
+helm dependency build argo/charts/argo-cd
+helm template argo/charts/argo-cd --name-template argo-cd --namespace argocd -f argo/charts/argo-cd/custom/local.yaml | kubectl apply -f -
 
 k -n argocd port-forward service/argo-cd-argocd-server 8080:80
 k -n argocd get secrets argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d

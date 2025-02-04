@@ -1,2 +1,3 @@
 istio-1.23.2
 self-manage/argocd-operator
+self-manage/argo/charts/argo-cd/charts/

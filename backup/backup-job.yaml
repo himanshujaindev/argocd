@@ -1,0 +1,71 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: argocd-backup
+  namespace: argocd
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 60
+      template:
+        spec:
+          serviceAccountName: argocd-server
+          containers:
+            - name: argocd-cli
+              image: "quay.io/argoproj/argocd:v2.13.2"
+              command:
+                - /bin/sh
+                - "-c"
+              args:
+                - |
+                  BACKUP_FILE="/mnt/backup/backup.yaml"
+                  echo "Creating backup at $BACKUP_FILE"
+                  if argocd admin export > $BACKUP_FILE; then
+                    echo "Backup created successfully!"
+                  else
+                    echo "Backup failed!" && exit 1
+                  fi
+              volumeMounts:
+                - name: backup-volume
+                  mountPath: /mnt/backup
+            - name: aws-cli
+              image: "amazon/aws-cli:2.23.11"
+              command:
+                - /bin/sh
+                - "-c"
+              env:
+                - name: AWS_ACCESS_KEY_ID
+                  value: <AWS_ACCESS_KEY_ID>
+                - name: AWS_SECRET_ACCESS_KEY
+                  value: <AWS_SECRET_ACCESS_KEY>
+                - name: AWS_DEFAULT_REGION
+                  value: us-west-2
+              args:
+                - |
+                  BACKUP_FILE="/mnt/backup/backup.yaml"
+
+                  while [ ! -f $BACKUP_FILE ]; do
+                    echo "Waiting for backup file to be created..."
+                    sleep 5
+                  done
+
+                  if [ ! -s $BACKUP_FILE ]; then
+                    echo "Backup file is empty, skipping upload to S3."
+                    exit 1
+                  fi
+
+                  S3_BUCKET="argocd-backups"
+                  echo "Uploading backup to S3: ${S3_BUCKET} ..."
+                  if aws s3 cp $BACKUP_FILE s3://$S3_BUCKET; then
+                    echo "Backup uploaded successfully to S3!"
+                  else
+                    echo "S3 upload failed!" && exit 1
+                  fi
+              volumeMounts:
+                - name: backup-volume
+                  mountPath: /mnt/backup
+          restartPolicy: Never
+          volumes:
+            - name: backup-volume
+              emptyDir: {}
