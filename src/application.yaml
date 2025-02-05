@@ -15,11 +15,12 @@ spec:
     server: https://kubernetes.default.svc
     namespace: default
 
-  syncPolicy: {}
-    # automated:
-    #   prune: false
-    #   selfHeal: false
-    # syncOptions:
-    #     - Validate=false
-    #     - ApplyOutOfSyncOnly=false
-    #     - RespectIgnoreDifferences=false
+  # syncPolicy: {}
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+        - Validate=false
+        - ApplyOutOfSyncOnly=false
+        - RespectIgnoreDifferences=false
