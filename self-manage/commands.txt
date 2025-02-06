@@ -19,6 +19,8 @@ k apply -f argo-application.yaml
 
 k apply -f src/app-config/helm/base/wxcc-platform.yaml
 
+k create secret generic s3-backup-credentials --from-literal=AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID> --from-literal=AWS_SECRET_ACCESS_KEY=<AWS_ACCESS_KEY_ID>
+
 --
 
 Backup
